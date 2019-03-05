@@ -75,18 +75,19 @@ public class ImageManager {
         
         return bi;
     }
-    public static Image grises(BufferedImage imagen){
-        Color gris;
-        int promedio;
-        for (int x = 0; x < imagen.getWidth(); x++) {
-            for (int y = 0; y < imagen.getHeight(); y++) {
-                gris = new Color(imagen.getRGB(x, y));
-                promedio = (gris.getRed()+gris.getBlue()+gris.getGreen())/3;
-                gris = new Color(promedio, promedio, promedio);
-                imagen.setRGB(x, y, gris.getRGB());
-            }
-        }
-        return ImageManager.toImage(imagen);
+    public static Image reedimensionar(Image imagen,int altura, int ancho){
+       BufferedImage bi = toBufferedImage(imagen);
+        double escalar;
+        if (bi.getWidth()>bi.getHeight()) {
+            escalar = bi.getWidth();
+        }else{
+            escalar = bi.getHeight();
+        } 
+            escalar = ancho/escalar;
+            imagen = bi.getScaledInstance((int) (bi.getWidth()*escalar),(int)(bi.getHeight()*escalar),0);
+       
+        
+        return imagen;
     }
     public static Image chromaKey(BufferedImage objeto, BufferedImage fondo, int rango){
         Color chromaGreen = new Color(0, 254, 0);

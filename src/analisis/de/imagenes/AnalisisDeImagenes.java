@@ -1,15 +1,20 @@
 package analisis.de.imagenes;
 
+import GUI.GUIFiltros;
 import GUI.GUIUmbral;
 import GUI.JFrameImagen;
 import io.ImageManager;
 import java.awt.Image;
 import io.DisposeImagen;
 import java.awt.Color;
+import java.awt.Rectangle;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import muestreo.HistogramaFrecuencias;
 import muestreo.Umbralizacion;
+import muestreo.negativo;
+import muestreo.temperatura;
 
 /**
  *
@@ -30,18 +35,24 @@ public class AnalisisDeImagenes {
     }
     public static void main(String[] args) throws IOException {
         
-        
-//       ImageManager img = new ImageManager();
-//       Image objeto = img.openImage();
-       GUIUmbral ventana = new GUIUmbral();
-       ventana.setVisible(true);
+          GUIFiltros ventana = new GUIFiltros();
+          ventana.setVisible(true);
+//        ImageManager img = new ImageManager();
+//        Image objeto = img.openImage();
+//        temperatura t = new temperatura();
+//        JFrameImagen dos = new JFrameImagen(objeto);
+//        JFrameImagen frame2 = new JFrameImagen(t.temperaturaImagen(objeto, -255));
+//        Image neg = negativo.generarImagenEnNegativo(objeto, true, true, true);
+//        JFrameImagen ver = new JFrameImagen(neg);
+//       GUIUmbral ventana = new GUIUmbral();
+//       ventana.setVisible(true);
 //        Image fondo = img.openImage();
 //        BufferedImage obj = ImageManager.toBufferedImage(objeto);
 //        BufferedImage back = ImageManager.toBufferedImage(fondo);
 //        
 //       Image Res = ImageManager.chromaKey(obj, back, 0);
 //        Image imagen = ImageManager.grises(ImageManager.toBufferedImage(objeto));
-//        JFrameImagen frame1 = new JFrameImagen(imagen);
+//        ;
 //        Image binaria = Umbralizacion.umbralizacionSimple(100, imagen);
 //        JFrameImagen frame2 = new JFrameImagen(binaria);
 //        ImageManager.guardarImagen(binaria);
