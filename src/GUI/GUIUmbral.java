@@ -21,6 +21,7 @@ public class GUIUmbral extends javax.swing.JFrame {
      */
     Image Original;
     public GUIUmbral() {
+        this.setVisible(true);
         initComponents();
         
     }

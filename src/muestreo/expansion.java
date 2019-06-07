@@ -58,6 +58,38 @@ public class expansion {
         }
         return ImageManager.toImage(bi);
     }
+    public static Image expansionTangencial(int j ,Image imagenOriginal){
+        BufferedImage bi = ImageManager.toBufferedImage(imagenOriginal);
+        // recorremos la imagen 
+        for(int x=0; x<bi.getWidth();x++){
+            for (int y=0;y<bi.getHeight();y++){
+            // extraer los valores por canal
+            Color color = new Color(bi.getRGB(x, y));
+            int r = (int)validarRango(255*Math.pow(Math.tan(j+color.getRed()), 2)/Math.pow( Math.tan(256),2));
+            int g = (int)validarRango(255*Math.pow(Math.tan(j+color.getGreen()), 2)/Math.pow(Math.tan(256),2));
+            int b = (int)validarRango(255*Math.pow(Math.tan(j+color.getBlue()), 2)/Math.pow(Math.tan(256),2));
+            color = new Color(r, g, b);
+            bi.setRGB(x, y, color.getRGB());
+            }
+        }
+        return ImageManager.toImage(bi);
+    }
+    public static Image expansionCuadratica(int j ,Image imagenOriginal){
+        BufferedImage bi = ImageManager.toBufferedImage(imagenOriginal);
+        // recorremos la imagen 
+        for(int x=0; x<bi.getWidth();x++){
+            for (int y=0;y<bi.getHeight();y++){
+            // extraer los valores por canal
+            Color color = new Color(bi.getRGB(x, y));
+            int r = (int)validarRango(255*Math.pow((j+color.getRed()),2)/Math.pow(256, 2));
+            int g = (int)validarRango(255*Math.pow((j+color.getGreen()),2)/Math.pow(256, 2));
+            int b = (int)validarRango(255*Math.pow((j+color.getBlue()),2)/Math.pow(256, 2));
+            color = new Color(r, g, b);
+            bi.setRGB(x, y, color.getRGB());
+            }
+        }
+        return ImageManager.toImage(bi);
+    }
     public static int calcularMaximo(int histo[]){
     // recorremos el histograma de der-izq
         for(int x=histo.length-1;x>-1;x--){

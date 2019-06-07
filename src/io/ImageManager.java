@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -16,12 +17,50 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import org.opencv.core.Mat;
 
 /**
  *
  * @author Roberto Cruz Leija
  */
 public class ImageManager {
+       public BufferedImage Mat2BufferedImage(Mat m) {
+    // Fastest code
+    // output can be assigned either to a BufferedImage or to an Image
+    int type = BufferedImage.TYPE_BYTE_GRAY;
+    if ( m.channels() > 1 ) {
+        type = BufferedImage.TYPE_3BYTE_BGR;
+    }
+    int bufferSize = m.channels()*m.cols()*m.rows();
+    byte [] b = new byte[bufferSize];
+    m.get(0,0,b); // get all the pixels
+    BufferedImage image = new BufferedImage(m.cols(),m.rows(), type);
+    final byte[] targetPixels = ((DataBufferByte) image.getRaster().getDataBuffer()).getData();
+    System.arraycopy(b, 0, targetPixels, 0, b.length);  
+    return image;
+}
+    
+    public static String openVideo(){
+        // definir los filtros para lectura
+            FileNameExtensionFilter filtro =
+                    new FileNameExtensionFilter("Videos","mp4","avi","mkv");
+            // crear un selector de archivos
+            JFileChooser selector = new JFileChooser();
+            // agregar el filtro al selector
+            selector.addChoosableFileFilter(filtro);
+            // especificar que solo se puedan abrir archivos
+            selector.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            
+             int res = selector.showOpenDialog(null);
+             
+             if (res == 1) {
+                 return null;
+            
+        }
+             File archivo = selector.getSelectedFile();
+             
+        return archivo.getPath();
+    }
     
     public static Image openImage (){
     

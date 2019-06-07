@@ -3,31 +3,46 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package Camara;
 
+import java.awt.Color;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
 import javax.swing.ImageIcon;
+import org.opencv.core.Mat;
 
 /**
  *
  * @author mijum
  */
-public class JFramePrincipal extends javax.swing.JFrame {
-
+public class JFrameImagen extends javax.swing.JFrame {
     /**
-     * Creates new form JFramePrincipal
+     * Creates new form JFrameImagen
      */
-    public JFramePrincipal(Image imagenOriginal) {
+    public JFrameImagen() {
         initComponents();
-        this.jLabelResultado.setIcon(new ImageIcon(imagenOriginal));
+        //
+       // this.jLabelImagen.setIcon(new ImageIcon(imagenOriginal));
         setVisible(true);
     }
-    public JFramePrincipal(){
+    public void nueva(Image imagenOriginal){
+        this.setSize(imagenOriginal.getWidth(this), imagenOriginal.getHeight(this));
         
-    }
-    public void setImage(Image x){
-        this.jLabelResultado.setIcon(new ImageIcon(x));
+       // imagenOriginal = x.generarImagenEnNegativo(imagenOriginal,true,true,true);
+        this.jLabelImagen.setIcon(new ImageIcon(imagenOriginal));
         this.repaint();
+    }
+ 
+    public BufferedImage chromakey(BufferedImage imagen){
+        Color aux;
+        for (int x = 0; x < imagen.getWidth(); x++) {
+            for (int y = 0; y < imagen.getHeight(); y++) {
+                aux = new Color(imagen.getRGB(x, y));
+                
+            }
+        }
+     return imagen;   
     }
 
     /**
@@ -39,7 +54,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabelResultado = new javax.swing.JLabel();
+        jLabelImagen = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,17 +63,17 @@ public class JFramePrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabelResultado)
+                .addComponent(jLabelImagen)
                 .addGap(0, 400, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabelResultado)
+                .addComponent(jLabelImagen)
                 .addGap(0, 300, Short.MAX_VALUE))
         );
 
-        jLabelResultado.getAccessibleContext().setAccessibleName("jLabelImagen");
+        jLabelImagen.getAccessibleContext().setAccessibleName("jLabelImagen");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -66,8 +81,9 @@ public class JFramePrincipal extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabelResultado;
+    private javax.swing.JLabel jLabelImagen;
     // End of variables declaration//GEN-END:variables
 }
